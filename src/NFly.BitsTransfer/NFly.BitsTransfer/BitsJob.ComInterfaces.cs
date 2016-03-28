@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -22,10 +22,14 @@ namespace NFly.BitsTransfer
         [ComImport()]
         interface IBackgroundCopyManager
         {
-            void CreateJob([MarshalAs(UnmanagedType.LPWStr)] string DisplayName, BG_JOB_TYPE Type, out Guid pJobId, [MarshalAs(UnmanagedType.Interface)] out IBackgroundCopyJob ppJob);
+            void CreateJob([MarshalAs(UnmanagedType.LPWStr)] string DisplayName, BG_JOB_TYPE Type, out Guid pJobId,
+                [MarshalAs(UnmanagedType.Interface)] out IBackgroundCopyJob ppJob);
+
             void GetJob(ref Guid jobID, [MarshalAs(UnmanagedType.Interface)] out IBackgroundCopyJob ppJob);
             void EnumJobs(uint dwFlags, [MarshalAs(UnmanagedType.Interface)] out IEnumBackgroundCopyJobs ppenum);
-            void GetErrorDescription([MarshalAs(UnmanagedType.Error)] int hResult, uint LanguageId, [MarshalAs(UnmanagedType.LPWStr)] out string pErrorDescription);
+
+            void GetErrorDescription([MarshalAs(UnmanagedType.Error)] int hResult, uint LanguageId,
+                [MarshalAs(UnmanagedType.LPWStr)] out string pErrorDescription);
         }
 
         [Guid("97EA99C7-0186-4AD4-8DF9-C5B4E0ED6B22")]
@@ -34,7 +38,10 @@ namespace NFly.BitsTransfer
         interface IBackgroundCopyCallback
         {
             void JobTransferred([MarshalAs(UnmanagedType.Interface)] IBackgroundCopyJob pJob);
-            void JobError([MarshalAs(UnmanagedType.Interface)] IBackgroundCopyJob pJob, [MarshalAs(UnmanagedType.Interface)] IBackgroundCopyError pError);
+
+            void JobError([MarshalAs(UnmanagedType.Interface)] IBackgroundCopyJob pJob,
+                [MarshalAs(UnmanagedType.Interface)] IBackgroundCopyError pError);
+
             void JobModification([MarshalAs(UnmanagedType.Interface)] IBackgroundCopyJob pJob, uint dwReserved);
         }
 
@@ -46,7 +53,10 @@ namespace NFly.BitsTransfer
             void GetError(out BG_ERROR_CONTEXT pContext, [MarshalAs(UnmanagedType.Error)] out int pCode);
             void GetFile([MarshalAs(UnmanagedType.Interface)] out IBackgroundCopyFile pVal);
             void GetErrorDescription(uint LanguageId, [MarshalAs(UnmanagedType.LPWStr)] out string pErrorDescription);
-            void GetErrorContextDescription(uint LanguageId, [MarshalAs(UnmanagedType.LPWStr)] out string pContextDescription);
+
+            void GetErrorContextDescription(uint LanguageId,
+                [MarshalAs(UnmanagedType.LPWStr)] out string pContextDescription);
+
             void GetProtocol([MarshalAs(UnmanagedType.LPWStr)] out string pProtocol);
         }
 
@@ -66,7 +76,10 @@ namespace NFly.BitsTransfer
         internal interface IBackgroundCopyJob
         {
             void AddFileSet(uint cFileCount, ref _BG_FILE_INFO pFileSet);
-            void AddFile([MarshalAs(UnmanagedType.LPWStr)] string RemoteUrl, [MarshalAs(UnmanagedType.LPWStr)] string LocalName);
+
+            void AddFile([MarshalAs(UnmanagedType.LPWStr)] string RemoteUrl,
+                [MarshalAs(UnmanagedType.LPWStr)] string LocalName);
+
             void EnumFiles([MarshalAs(UnmanagedType.Interface)] out IEnumBackgroundCopyFiles pEnum);
             void Suspend();
             void Resume();
@@ -94,8 +107,14 @@ namespace NFly.BitsTransfer
             void SetNoProgressTimeout(uint Seconds);
             void GetNoProgressTimeout(out uint Seconds);
             void GetErrorCount(out uint Errors);
-            void SetProxySettings(BG_JOB_PROXY_USAGE ProxyUsage, [MarshalAs(UnmanagedType.LPWStr)] string ProxyList, [MarshalAs(UnmanagedType.LPWStr)] string ProxyBypassList);
-            void GetProxySettings(out BG_JOB_PROXY_USAGE pProxyUsage, [MarshalAs(UnmanagedType.LPWStr)] out string pProxyList, [MarshalAs(UnmanagedType.LPWStr)] out string pProxyBypassList);
+
+            void SetProxySettings(BG_JOB_PROXY_USAGE ProxyUsage, [MarshalAs(UnmanagedType.LPWStr)] string ProxyList,
+                [MarshalAs(UnmanagedType.LPWStr)] string ProxyBypassList);
+
+            void GetProxySettings(out BG_JOB_PROXY_USAGE pProxyUsage,
+                [MarshalAs(UnmanagedType.LPWStr)] out string pProxyList,
+                [MarshalAs(UnmanagedType.LPWStr)] out string pProxyBypassList);
+
             void TakeOwnership();
         }
 
@@ -104,7 +123,9 @@ namespace NFly.BitsTransfer
         [ComImport()]
         internal interface IEnumBackgroundCopyFiles
         {
-            void Next(uint celt, [MarshalAs(UnmanagedType.Interface)] out IBackgroundCopyFile rgelt, out uint pceltFetched);
+            void Next(uint celt, [MarshalAs(UnmanagedType.Interface)] out IBackgroundCopyFile rgelt,
+                out uint pceltFetched);
+
             void Skip(uint celt);
             void Reset();
             void Clone([MarshalAs(UnmanagedType.Interface)] out IEnumBackgroundCopyFiles ppenum);
@@ -116,7 +137,9 @@ namespace NFly.BitsTransfer
         [ComImport()]
         interface IEnumBackgroundCopyJobs
         {
-            void Next(uint celt, [MarshalAs(UnmanagedType.Interface)] out IBackgroundCopyJob rgelt, out uint pceltFetched);
+            void Next(uint celt, [MarshalAs(UnmanagedType.Interface)] out IBackgroundCopyJob rgelt,
+                out uint pceltFetched);
+
             void Skip(uint celt);
             void Reset();
             void Clone([MarshalAs(UnmanagedType.Interface)] out IEnumBackgroundCopyJobs ppenum);
@@ -170,11 +193,9 @@ namespace NFly.BitsTransfer
         [StructLayout(LayoutKind.Sequential, Pack = 4, Size = 0)]
         internal struct _BG_FILE_INFO
         {
-            [MarshalAs(UnmanagedType.LPWStr)]
-            public string RemoteName;
+            [MarshalAs(UnmanagedType.LPWStr)] public string RemoteName;
 
-            [MarshalAs(UnmanagedType.LPWStr)]
-            public string LocalName;
+            [MarshalAs(UnmanagedType.LPWStr)] public string LocalName;
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 8, Size = 0)]
@@ -232,12 +253,12 @@ namespace NFly.BitsTransfer
         }
 
 
-
         public enum JobOwner
         {
             CurrentUser = 0,
             AllUsers = 1,
         }
+
         #endregion
     }
 }

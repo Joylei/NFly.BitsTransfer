@@ -22,7 +22,6 @@ namespace NFly.BitsTransfer
 
         public string RemoteFile
         {
-
             get
             {
                 string name;

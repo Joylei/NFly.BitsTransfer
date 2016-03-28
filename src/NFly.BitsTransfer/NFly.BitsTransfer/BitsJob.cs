@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -70,13 +70,7 @@ namespace NFly.BitsTransfer
                     return name;
                 });
             }
-            set
-            {
-                CheckError(delegate
-                {
-                    _job.SetDisplayName(value);
-                });
-            }
+            set { CheckError(delegate { _job.SetDisplayName(value); }); }
         }
 
         /// <summary>
@@ -93,15 +87,8 @@ namespace NFly.BitsTransfer
                     return desc;
                 });
             }
-            set
-            {
-                CheckError(delegate
-                {
-                    _job.SetDescription(value);
-                });
-            }
+            set { CheckError(delegate { _job.SetDescription(value); }); }
         }
-
 
 
         /// <summary>
@@ -119,14 +106,7 @@ namespace NFly.BitsTransfer
                     return priority;
                 });
             }
-            set
-            {
-                CheckError(delegate
-                {
-                    _job.SetPriority(value);
-                });
-
-            }
+            set { CheckError(delegate { _job.SetPriority(value); }); }
         }
 
         /// <summary>
@@ -144,13 +124,7 @@ namespace NFly.BitsTransfer
                     return delay;
                 });
             }
-            set
-            {
-                CheckError(delegate
-                {
-                    _job.SetMinimumRetryDelay(value);
-                });
-            }
+            set { CheckError(delegate { _job.SetMinimumRetryDelay(value); }); }
         }
 
         /// <summary>
@@ -299,14 +273,12 @@ namespace NFly.BitsTransfer
         {
             get
             {
-
                 return CheckError(delegate
                 {
                     _BG_JOB_TIMES times;
                     _job.GetTimes(out times);
                     return times.TransferCompletionTime;
                 });
-
             }
         }
 
@@ -318,7 +290,6 @@ namespace NFly.BitsTransfer
             }
             catch (COMException ex)
             {
-
                 throw new BitsException(this.Error, ex);
             }
         }
@@ -331,7 +302,6 @@ namespace NFly.BitsTransfer
             }
             catch (COMException ex)
             {
-
                 throw new BitsException(this.Error, ex);
             }
         }
@@ -359,7 +329,8 @@ namespace NFly.BitsTransfer
                             int code;
                             string pErrorDescription;
                             BG_ERROR_CONTEXT context;
-                            ppError.GetErrorDescription(Convert.ToUInt32(Thread.CurrentThread.CurrentUICulture.LCID), out pErrorDescription);
+                            ppError.GetErrorDescription(Convert.ToUInt32(Thread.CurrentThread.CurrentUICulture.LCID),
+                                out pErrorDescription);
                             ppError.GetError(out context, out code);
                             error.Code = code;
                             error.Context = context;
@@ -392,7 +363,6 @@ namespace NFly.BitsTransfer
                 {
                     _progressWatch.Stop();
                 }
-
             });
         }
 
@@ -411,7 +381,6 @@ namespace NFly.BitsTransfer
                 {
                     _progressWatch.Stop();
                 }
-
             });
         }
 
@@ -436,7 +405,6 @@ namespace NFly.BitsTransfer
             {
                 _progressWatch.Stop();
                 _job.Complete();
-
             });
         }
 
@@ -447,10 +415,7 @@ namespace NFly.BitsTransfer
         /// <param name="localFile"></param>
         public void AddFile(string remoteFile, string localFile)
         {
-            CheckError(delegate
-            {
-                _job.AddFile(remoteFile, localFile);
-            });
+            CheckError(delegate { _job.AddFile(remoteFile, localFile); });
         }
 
         /// <summary>
@@ -458,10 +423,7 @@ namespace NFly.BitsTransfer
         /// </summary>
         public IEnumerable<BitsFile> Files
         {
-            get
-            {
-                return CheckError(() => GetFiles());
-            }
+            get { return CheckError(() => GetFiles()); }
         }
 
         private IEnumerable<BitsFile> GetFiles()
@@ -491,7 +453,6 @@ namespace NFly.BitsTransfer
         }
 
 
-
         private static WeakReference _weakBCM = null;
 
         static IBackgroundCopyManager Manager
@@ -508,18 +469,19 @@ namespace NFly.BitsTransfer
                     }
                 }
                 // ReSharper disable once SuspiciousTypeConversion.Global
-                bcm = (IBackgroundCopyManager)new BackgroundCopyManager();
+                bcm = (IBackgroundCopyManager) new BackgroundCopyManager();
                 _weakBCM = new WeakReference(bcm);
                 return bcm;
             }
         }
+
         public static IEnumerable<BitsJob> AllJobs(JobOwner owner)
         {
             var bcm = Manager;
             uint count;
 
             IEnumBackgroundCopyJobs currentUserjobs;
-            bcm.EnumJobs((uint)owner, out currentUserjobs);
+            bcm.EnumJobs((uint) owner, out currentUserjobs);
 
             currentUserjobs.GetCount(out count);
             for (int i = 0; i < count; i++)
@@ -552,6 +514,4 @@ namespace NFly.BitsTransfer
             return new BitsJob(job);
         }
     }
-
-    
 }

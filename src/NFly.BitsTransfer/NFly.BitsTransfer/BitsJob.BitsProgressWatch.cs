@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,13 +37,12 @@ namespace NFly.BitsTransfer
 
             public void Stop()
             {
-
                 this._timer.Change(Timeout.Infinite, Timeout.Infinite);
             }
 
             private void OnTimerTick(object state)
             {
-                var job = (BitsTransfer.BitsJob)state;
+                var job = (BitsTransfer.BitsJob) state;
                 var status = job.State;
 
                 BitsProgress progress = new BitsProgress();
@@ -51,8 +50,8 @@ namespace NFly.BitsTransfer
 
                 if (status == BG_JOB_STATE.BG_JOB_STATE_TRANSFERRED)
                 {
-                    progress.BytesTotal = (long)job.BytesTotal;
-                    progress.BytesTransferred = (long)job.BytesTransferred;
+                    progress.BytesTotal = (long) job.BytesTotal;
+                    progress.BytesTransferred = (long) job.BytesTransferred;
                     progress.BytesRemaining = progress.BytesTotal - progress.BytesTransferred;
                     progress.EstimatedSpeed = 0;
                     progress.EstimatedTimeRemaining = -1;
@@ -70,8 +69,8 @@ namespace NFly.BitsTransfer
                 }
 
 
-                progress.BytesTotal = (long)job.BytesTotal;
-                progress.BytesTransferred = (long)job.BytesTransferred;
+                progress.BytesTotal = (long) job.BytesTotal;
+                progress.BytesTransferred = (long) job.BytesTransferred;
                 progress.BytesRemaining = progress.BytesTotal - progress.BytesTransferred;
 
                 var totalSeconds = -1L;
@@ -84,15 +83,16 @@ namespace NFly.BitsTransfer
                 var avgDelta = this.BytesDelta;
                 if (lastBytes >= 0 && avgDelta > 0)
                 {
-                    totalSeconds = progress.BytesRemaining / avgDelta;
+                    totalSeconds = progress.BytesRemaining/avgDelta;
                 }
 
                 progress.EstimatedSpeed = avgDelta;
                 progress.EstimatedTimeRemaining = totalSeconds;
-                progress.Percentage = progress.BytesTotal > 0 ? progress.BytesTransferred / (float)progress.BytesTotal : 0;
+                progress.Percentage = progress.BytesTotal > 0
+                    ? progress.BytesTransferred/(float) progress.BytesTotal
+                    : 0;
                 job.ReportProgress(progress);
             }
-
 
 
             protected long BytesDelta
@@ -103,7 +103,7 @@ namespace NFly.BitsTransfer
                     {
                         return _bytesDeltaQueue.Count == 0
                             ? 0
-                            : _bytesDeltaQueue.Sum() / _bytesDeltaQueue.Count;
+                            : _bytesDeltaQueue.Sum()/_bytesDeltaQueue.Count;
                     }
                 }
 
@@ -114,7 +114,6 @@ namespace NFly.BitsTransfer
                         if (_bytesDeltaQueue.Count > QUEUE_SIZE_LIMIT)
                         {
                             _bytesDeltaQueue.RemoveAt(0);
-
                         }
                         _bytesDeltaQueue.Add(value);
                     }

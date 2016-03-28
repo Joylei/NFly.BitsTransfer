@@ -21,7 +21,7 @@ namespace NFly.BitsTransfer
             {
                 Directory.CreateDirectory(localDir);
             }
-            foreach (string file in Directory.GetFiles(remoteShare,"*.*", SearchOption.AllDirectories))
+            foreach (string file in Directory.GetFiles(remoteShare, "*.*", SearchOption.AllDirectories))
             {
                 string path = GetRelativePath(file, remoteShare);
                 string localPath = Path.Combine(localDir, path);
