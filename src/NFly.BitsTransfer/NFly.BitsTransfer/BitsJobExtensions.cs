@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
 
 namespace NFly.BitsTransfer
 {
@@ -11,7 +14,11 @@ namespace NFly.BitsTransfer
         /// <param name="job">bitsjob</param>
         /// <param name="remoteShare">remoete location</param>
         /// <param name="localDir">local directory</param>
-        public static void AddFolder(this BitsTransfer.BitsJob job, string remoteShare, string localDir)
+        /// <param name="fileFilter">only files match the filter will be transferred</param>
+        public static void AddFolder(this BitsTransfer.BitsJob job, 
+            string remoteShare, 
+            string localDir,
+            Func<string, bool> fileFilter = null)
         {
             if (!Directory.Exists(remoteShare))
             {
@@ -21,12 +28,18 @@ namespace NFly.BitsTransfer
             {
                 Directory.CreateDirectory(localDir);
             }
-            foreach (string file in Directory.GetFiles(remoteShare, "*.*", SearchOption.AllDirectories))
+
+            IEnumerable<string> files = Directory.GetFiles(remoteShare, "*.*", SearchOption.AllDirectories);
+            if (fileFilter != null)
+            {
+                files = files.Where(fileFilter);
+            }
+            foreach (string file in files)
             {
                 string path = GetRelativePath(file, remoteShare);
                 string localPath = Path.Combine(localDir, path);
-                Console.WriteLine("- remote file:" + file);
-                Console.WriteLine(" local file:" + localPath);
+                Debug.WriteLine("- remote file:" + file);
+                Debug.WriteLine(" local file:" + localPath);
                 string fileDir = Path.GetDirectoryName(localPath);
                 if (!Directory.Exists(fileDir))
                 {
