@@ -1,3 +1,4 @@
+// MIT License 2016 joylei(leingliu@126.com)
 namespace NFly.BitsTransfer
 {
     public struct BitsProgress

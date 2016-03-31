@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿// MIT License 2016 joylei(leingliu@126.com)
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 

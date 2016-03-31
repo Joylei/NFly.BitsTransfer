@@ -1,3 +1,4 @@
+// MIT License 2016 joylei(leingliu@126.com)
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,0 +1,13 @@
+﻿extensions: designer.cs generated.cs
+extensions: .cs .cpp .h
+// MIT License 2016 joylei(leingliu@126.com)
+extensions: .aspx .ascx
+<%-- 
+MIT License 2016 joylei(leingliu@126.com)
+--%>
+extensions: .vb
+'MIT License 2016 joylei(leingliu@126.com)
+extensions:  .xml .config .xsd
+<!--
+MIT License 2016 joylei(leingliu@126.com)
+-->
