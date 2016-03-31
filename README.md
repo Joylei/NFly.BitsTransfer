@@ -25,6 +25,15 @@ job.AddFile("REMOTE_FILE", "PATH_OF_LOCAL_FILE");
 
 //watch progress
 job.OnProgress += progress =>{
+  var status = job.State;
+  if(status == BitsJob.BG_JOB_STATE.BG_JOB_STATE_TRANSFERRED){
+    //files transferred, mark job as completed
+    job.Complete();
+
+    Console.WriteLine("Job completed, you can access downloaded files now.");
+    return;
+  }
+
   Console.WriteLine("----");
   Console.WriteLine("BytesTotal: {0}",progress.BytesTotal);
   Console.WriteLine("BytesTransferred: {0}",progress.BytesTransferred);
