@@ -13,7 +13,7 @@ namespace NFly.BitsTransfer
             const int QUEUE_SIZE_LIMIT = 5;
             readonly List<long> _bytesDeltaQueue = new List<long>();
             private readonly Timer _timer;
-            private long _lastBytesTransfered = 0;
+            private long _lastBytesTransferred = 0;
 
 
             public BitsProgressWatch(BitsTransfer.BitsJob job)
@@ -74,7 +74,7 @@ namespace NFly.BitsTransfer
                 progress.BytesRemaining = progress.BytesTotal - progress.BytesTransferred;
 
                 var totalSeconds = -1L;
-                var lastBytes = Interlocked.Exchange(ref _lastBytesTransfered, progress.BytesTransferred);
+                var lastBytes = Interlocked.Exchange(ref _lastBytesTransferred, progress.BytesTransferred);
                 var delta = progress.BytesTransferred - lastBytes;
                 if (delta > 0)
                 {
