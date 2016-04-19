@@ -1,6 +1,9 @@
 # NFly.BitsTransfer
 A .Net wrapper library for Windows [Background Intelligent Transfer Service (BITS) ](https://msdn.microsoft.com/en-us/library/aa362708%28v=vs.85%29.aspx)
 
+# DEMO
+![DEMO](https://github.com/Joylei/NFly.BitsTransfer/blob/master/Capture.PNG)
+
 # Features
 - Download Single File
 - Download Folder
