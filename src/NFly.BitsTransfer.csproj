@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net40</TargetFramework>
+    <AssemblyName>NFly.BitsTransfer</AssemblyName>
+    <RootNamespace>NFly.BitsTransfer</RootNamespace>
+    <Authors>joylei (leingliu@126.com)</Authors>
+    <Company />
+    <Description>A .Net wrapper library for Windows Background Intelligent Transfer Service (BITS)</Description>
+    <PackageReleaseNotes>New build system</PackageReleaseNotes>
+    <Copyright>Copyright 2016</Copyright>
+    <PackageLicenseUrl>https://github.com/Joylei/NFly.BitsTransfer/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Joylei/NFly.BitsTransfer</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/lostmsu/NFly.BitsTransfer.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>BITS BitsTransfer Background Intelligent</PackageTags>
+  </PropertyGroup>
+
+</Project>
