@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NFly.BitsTransfer.net45", "NFly.BitsTransfer\NFly.BitsTransfer.net45.csproj", "{102D48BB-75E5-4CFC-A7E8-FE3A35CE3BAF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{102D48BB-75E5-4CFC-A7E8-FE3A35CE3BAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{102D48BB-75E5-4CFC-A7E8-FE3A35CE3BAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{102D48BB-75E5-4CFC-A7E8-FE3A35CE3BAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{102D48BB-75E5-4CFC-A7E8-FE3A35CE3BAF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>NFly.BitsTransfer</id>
+    <version>$version$</version>
+    <authors>joylei (leingliu@gmail.com)</authors>
+    <owners>joylei (leingliu@gmail.com)</owners>
+    <licenseUrl>https://github.com/Joylei/NFly.BitsTransfer/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Joylei/NFly.BitsTransfer</projectUrl>
+    <!-- <iconUrl></iconUrl> -->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A .Net wrapper library for Windows Background Intelligent Transfer Service (BITS)</description>
+    <releaseNotes>$releaseNotes$</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>BITS BitsTransfer Background Intelligent</tags>
+    <dependencies>
+    </dependencies>
+  </metadata>
+</package>
